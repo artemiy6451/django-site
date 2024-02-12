@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/question.css' %}">
+{% endblock %}
+
+{% block title %}Lokach|Questions{% endblock %}
+
+{% block main %}
+    <div class="content content__question">
+        <div class="question">
+            <p class="question__text">{{ question.question_text }}</p>
+            <ul class="question__choice-set">
+                {% for choice in choice_set %}
+                <li class="question__choice">{{ choice.id }}) {{ choice.choice_text }} -- {{ choice.votes }}</li>
+                {% endfor %}
+            </ul>
+            <p class="question__author">{{ question.author }}</p>
+        </div>
+    </div>
+{% endblock %}

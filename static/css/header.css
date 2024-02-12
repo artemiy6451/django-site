@@ -1,0 +1,18 @@
+.header__content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.header__logo{
+    width: 140px;
+}
+
+nav{
+    font-size: 24px;
+}
+
+nav>a{
+    padding: 0 20px;
+}
