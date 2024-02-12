@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    {% block head %} {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Lokach site {% endblock %}</title>
+</head>
+<body>
+        <header class="header">
+            <div class="content header__content">
+                <div class="header__left-side">
+                    <img src="{% static 'images/logo.svg' %}" alt="logo" class="header__logo">
+                </div>
+                <div class="header__right-side">
+                    <nav class="nav">
+                        <a href="">Home</a>
+                        <a href="{% url 'questions' %}">Questions</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            {% block main %} {% endblock %}
+        </main>
+</body>
+</html>
