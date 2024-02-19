@@ -5,16 +5,47 @@
     text-align: center;
 }
 
+.question__link{
+    font-size: 20px;
+}
+
 .question__text, .question__choice-set, .question__choice{
     padding: 5px;
     text-align: left;
 }
 
 .question__text{
-    font-size: 30px;
+    font-size: 40px;
+}
+
+.question__link:hover{
+    cursor: pointer;
 }
 
 .question__author{
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
+}
+
+.choose__set{
+    text-align: left;
+}
+
+.question__choice{
+    font-size: 26px;
+}
+
+.back-button{
+    display: flex;
+    justify-content: center;
+}
+
+.back-button__button{
+    border: none;
+    background-color: #fff;
+}
+
+.back-button__button:hover{
+    background-color: #dbd9d9;
+    cursor: pointer;
 }

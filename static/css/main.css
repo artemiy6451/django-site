@@ -1,3 +1,7 @@
+body{
+    font-size: 16px;
+}
+
 .content{
     max-width: 1400px;
     min-width: 800px;

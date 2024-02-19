@@ -5,17 +5,36 @@
     <link rel="stylesheet" href="{% static 'css/question.css' %}">
 {% endblock %}
 
-{% block title %}Lokach|Questions{% endblock %}
+{% block title %}Lokach|Details{% endblock %}
 
 {% block main %}
     <div class="content content__question">
         <div class="question">
-            <p class="question__text">{{ question.question_text }}</p>
-            <ul class="question__choice-set">
-                {% for choice in choice_set %}
-                <li class="question__choice">{{ choice.id }}) {{ choice.choice_text }} -- {{ choice.votes }}</li>
-                {% endfor %}
-            </ul>
+            <form action="{% url 'polls:vote' question.id %}" method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>
+                        <h1 class="question__text">{{ question.question_text }}</h1>
+                    </legend>
+                    {% if error_message %}
+                        <p class="error error_message">{{ error_message }}</p>
+                    {% endif %}
+                    <div class="choose__set">
+                        {% for choice in question.choice_set.all %}
+                            <div class="choose__set-item">
+                                <input 
+                                    type="radio" 
+                                    class="question__choice"
+                                    name="choice"
+                                    id="choise{{ forloop.counter }}"
+                                    value="{{ choice.id }}">
+                                <label for="choise{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </fieldset>
+                <input type="submit" class="submit__form" value="Vote" />
+            </form>
             <p class="question__author">{{ question.author }}</p>
         </div>
     </div>

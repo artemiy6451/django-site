@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "django-site"
+version = "0.1.0"
+description = ""
+authors = ["Kazantsev Artem <me@lokach.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.2"
+djangorestframework = "^3.14.0"
+
+
+[tool.poetry.group.dev.dependencies]
+django-stubs = "^4.2.7"
+django-types = "^0.19.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

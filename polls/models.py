@@ -9,7 +9,7 @@ class Author(models.Model):
     lastname = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.firstname 
+        return f"{self.firstname} {self.lastname}"
 
 class Question(models.Model):
     author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)
