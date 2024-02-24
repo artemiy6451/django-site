@@ -6,14 +6,16 @@ authors = ["Kazantsev Artem <me@lokach.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 django = "^5.0.2"
 djangorestframework = "^3.14.0"
+tzdata = "^2024.1"
 
 
 [tool.poetry.group.dev.dependencies]
 django-stubs = "^4.2.7"
 django-types = "^0.19.1"
+django-debug-toolbar = "^4.3.0"
 
 [build-system]
 requires = ["poetry-core"]

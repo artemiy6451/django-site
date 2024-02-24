@@ -1,8 +1,12 @@
 .content__question{
-    display: flex;
+    display: block;
     justify-content: center;
     font-size: 18px;
     text-align: center;
+}
+
+.question{
+    margin-bottom: 20px;
 }
 
 .question__link{
@@ -47,5 +51,14 @@
 
 .back-button__button:hover{
     background-color: #dbd9d9;
+    cursor: pointer;
+}
+
+.create_question_button{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.create_question_button:hover{
     cursor: pointer;
 }

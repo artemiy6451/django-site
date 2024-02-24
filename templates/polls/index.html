@@ -19,7 +19,9 @@
                 </a>
             </div>
         {% endfor %}
+        <a class="create_question_button" href="{% url 'polls:create' %}">Create new question</a>
     </div>
 {% endif %}
+
 
 {% endblock %}

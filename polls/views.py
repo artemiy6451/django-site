@@ -1,26 +1,45 @@
+from typing import Any
 from django.db.models import QuerySet
 from django.http import HttpRequest, HttpResponseRedirect
 from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.views import generic
 
 from polls.models import Choice, Question
 
 # Create your views here.
 
-def index(request: HttpRequest) -> HttpResponse:
-    latest_question_list: QuerySet = Question.objects.order_by("-pub_date")[:10]
-    context = {
-        "latest_question_list": latest_question_list,
-    }
-    return render(request, "polls/index.html", context)
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
 
-def detail(request: HttpRequest, question_id: int) -> HttpResponse:
-    question = get_object_or_404(Question, pk=question_id)
-    context = {
-        "question": question,
-    }
-    return render(request, "polls/details.html", context)
+    def get_queryset(self) -> QuerySet:
+        """Return the last ten published questions."""
+        return Question.objects.order_by("-pub_date")[:10]
+
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/details.html'
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        pk = self.kwargs.get('pk')
+        question = get_object_or_404(Question, pk=pk)
+        context = {
+            'question': question,
+            'choice_set': question.choice_set.all().order_by('-votes'),
+        }
+        return context
+
+class NewView(generic.CreateView):
+    model = Question
+
 
 def vote(request: HttpRequest, question_id: int) -> HttpResponse:
     question = get_object_or_404(Question, pk=question_id)
@@ -35,12 +54,3 @@ def vote(request: HttpRequest, question_id: int) -> HttpResponse:
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
-
-def results(request: HttpRequest, question_id: int) -> HttpResponse:
-    question = get_object_or_404(Question, pk=question_id)
-    context = {
-        "question": question,
-        "choice_set": question.choice_set.all().order_by('-votes'),
-    }
-    return render(request, "polls/results.html", context)
-
